@@ -5,9 +5,22 @@
     <title></title>
 
     <style>
+        body {
+            background-color: #f7eedc;
+        }
+
         h1 {
             color: #1a7ee3;
         }
+
+        p {
+            color:#3e3e3e;
+        }
+
+		.content {
+			background-color: #d9e7b8;
+            padding: 20px;
+		}
     </style>
 </head>
 <body>
@@ -18,7 +31,9 @@
 
     <div>
         <p>------ Início do conteúdo ------</p>
-        {{content}}
+        <div class="content">
+            {{content}}
+        </div>
         <p>------ Fim do conteúdo ------</p>
     </div>
 
