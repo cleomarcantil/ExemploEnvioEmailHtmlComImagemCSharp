@@ -15,19 +15,17 @@ try
 		?? throw new Exception("E-Mail de destino requerido!");
 
 
-	var imgPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplate/mountain.jpg");
-	var img1LinkedResource = new LinkedResource(imgPath, MediaTypeNames.Image.Jpeg) { ContentId = "img1" };
-
 	var content = @"
-		<div>
-			<p>Teste de envio de e-mail com anexo</p>
-			<img src='cid:img1' />
-			<p>fim</p>
-		</div>
-		";
+	<div>
+		<p>Mensagem 1</p>
+		<p>bla bla bla</p>
+	</div>
+	";
 
-	var alternateView = AlternateView.CreateAlternateViewFromString(content, null, MediaTypeNames.Text.Html);
-	alternateView.LinkedResources.Add(img1LinkedResource);
+	var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplate");
+	var alternateView = new TemplatedAlternateViewBuider(templatePath)
+		.SetContent(content)
+		.Build();
 
 	var mail = new MailMessage(emailOrigem, emailDestino);
 	mail.Subject = "Teste";
